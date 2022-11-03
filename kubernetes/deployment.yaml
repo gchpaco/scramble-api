@@ -1,0 +1,34 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: scramble-api-service
+spec:
+  selector:
+    app: scramble-api
+  ports:
+    - protocol: "TCP"
+      port: 6000
+      targetPort: 5000
+  type: LoadBalancer
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: scramble-api
+spec:
+  selector:
+    matchLabels:
+      app: scramble-api
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: scramble-api
+    spec:
+      containers:
+        - name: scramble-api
+          image: scramble-api:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 5000

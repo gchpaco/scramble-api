@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head><title>Scramble Audit Logs</title></head>
+<body>
+<h1>Scramble Audit Logs</h1>
+
+<table>
+  <tr><th>API</th><th>Input</th><th>Output</th></tr>
+  {% for log in logs %}
+  <tr>
+    <td>{{ log.api }}<td>
+      {% if log.input %}
+    <td>{{ log.input }}</td>
+    {% else %}
+    <td><i>None Given</i></td>
+    {% endif %}
+    {% if log.output %}
+    <td>{{ log.output }}</td>
+    {% else %}
+    <td><i>None Given</i></td>
+    {% endif %}
+  </tr>
+  {% endfor %}
+</table>
+
+</body>
+</html>
